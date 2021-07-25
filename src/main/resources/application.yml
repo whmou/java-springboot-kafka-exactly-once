@@ -1,0 +1,20 @@
+server:
+  port: 9000
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+#      group-id: group_id_123
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      isolation-level: read_committed
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      transaction-id-prefix: tx-id-
+      properties:
+        enable.idempotence: true
+        transactional.id: tran-id-1
